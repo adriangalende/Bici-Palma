@@ -18,6 +18,7 @@ public class Estacion{
     }
 
 
+    /* Getters & Setters */
     public int getId(){
         return id;
     }
@@ -32,6 +33,13 @@ public class Estacion{
 
     public Bicicleta[] getAnclajes(){
         return anclajes;
+    }
+
+    /* Métodos públicos */
+
+    public void consultarEstacion() {
+        System.out.println("Estación número " + getId() + ", situada en " + getDireccion() + " y con " + getAnclajes().length
+        + " anclajes");
     }
 
 
