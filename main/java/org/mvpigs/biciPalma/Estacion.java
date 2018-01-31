@@ -83,4 +83,8 @@ public class Estacion{
                 System.out.println("bicicleta: " + bici.getId() + " anclada en el anclaje: " + numeroAnclaje);
     }
 
+    public boolean leerTarjetaUsuario(TarjetaUsuario tarjetaUsuario){
+        return tarjetaUsuario.estaActivada();
+    }
+
 }
