@@ -38,8 +38,19 @@ public class Estacion{
     /* Métodos públicos */
 
     public void consultarEstacion() {
-        System.out.println("Estación número " + getId() + ", situada en " + getDireccion() + " y con " + getAnclajes().length
-        + " anclajes");
+        System.out.println("id: " + getId());
+        System.out.println("direccion: " + getDireccion());
+        System.out.println("numeroAnclajes: " + getNumeroAnclajes());
+    }
+
+    public int anclajesLibres(){
+        int anclajesLibres = 0;
+        for (Bicicleta anclaje : anclajes){
+            if (anclaje == null){
+                anclajesLibres++;
+            }
+        }
+        return anclajesLibres;
     }
 
 

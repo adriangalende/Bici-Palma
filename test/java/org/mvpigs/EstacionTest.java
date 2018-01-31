@@ -1,11 +1,8 @@
 package org.mvpigs;
 
 import org.mvpigs.biciPalma.Estacion;
-import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-
-import java.beans.Transient;
 
 public class EstacionTest{
     @Test
@@ -26,8 +23,18 @@ public class EstacionTest{
 
     @Test
     public void testConsultarEstacion(){
-        Estacion palma = new Estacion(1, "Plaza España", 8);
+        System.out.println("**** CASO TEST VISUALIZAR ESTACION ****");
+        Estacion palma = new Estacion(1, "Manacor", 6);
         palma.consultarEstacion();
 
     }
+
+    @Test
+    public void testConsultarAnclajesLibres(){
+        System.out.println("**** CASO TEST VISUALIZAR ANCLAJES LIBRES ****");
+        Estacion palma = new Estacion(1, "Plaza España", 8);
+        System.out.println("anclajesLibres: " + palma.anclajesLibres());
+        assertEquals(8, palma.anclajesLibres());
+    }
+
 }
