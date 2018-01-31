@@ -82,34 +82,34 @@ public class Estacion {
         System.out.println("bicicleta: " + bici.getId() + " anclada en el anclaje: " + numeroAnclaje);
     }
 
-    public void mostrarBicicleta(Bicicleta bici, int numeroAnclaje){
-		System.out.println("bicicleta retirada: " + bici.getId() + " del anclaje: " + numeroAnclaje);
-	}
+    public void mostrarBicicleta(Bicicleta bici, int numeroAnclaje) {
+        System.out.println("bicicleta retirada: " + bici.getId() + " del anclaje: " + numeroAnclaje);
+    }
 
     public boolean leerTarjetaUsuario(TarjetaUsuario tarjetaUsuario) {
         return tarjetaUsuario.estaActivada();
     }
 
     public void retirarBicicleta(TarjetaUsuario tarjetaUsuario) {
-        if ( leerTarjetaUsuario(tarjetaUsuario) ) {
-            
+        if (leerTarjetaUsuario(tarjetaUsuario)) {
+
             int posicion = generarAnclaje();
             boolean biciRetirada = false;
 
             while (!biciRetirada) {
-                if ( this.anclajes[posicion] != null ){
-                    mostrarBicicleta(this.anclajes[posicion], (posicion+1));
+                if (this.anclajes[posicion] != null) {
+                    mostrarBicicleta(this.anclajes[posicion], (posicion + 1));
                     this.anclajes[posicion] = null;
                     biciRetirada = true;
                 }
             }
-            
+
         } else {
             System.out.println("La tarjeta del usuario no está activa");
         }
     }
 
-    public int generarAnclaje(){
+    public int generarAnclaje() {
         return ThreadLocalRandom.current().nextInt(0, this.anclajes.length);
     }
 }
