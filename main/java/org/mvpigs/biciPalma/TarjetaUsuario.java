@@ -1,24 +1,28 @@
 package org.mvpigs.biciPalma;
 
 public class TarjetaUsuario{
-    private int id;
+    private String id;
     private boolean activada = false;
 
     public TarjetaUsuario(){
-        id = 000000000;
+        this.id = "000000000";
     }
 
-    public TarjetaUsuario(int id){
+    public TarjetaUsuario(String id){
         this.id = id;
     }
 
-    public TarjetaUsuario(int id, boolean activada){
+    public TarjetaUsuario(String id, boolean activada){
         this.id = id;
         this.activada = activada;
     }
 
     public boolean estaActivada(){
-        return activada;
+        return this.activada;
+    }
+
+    public void setActivada(boolean estado){
+        this.activada = estado;
     }
 
 }

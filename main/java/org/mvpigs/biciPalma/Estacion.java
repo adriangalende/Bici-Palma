@@ -75,7 +75,7 @@ public class Estacion {
             }
             i++;
         }
-        consultarAnclajes();
+        //consultarAnclajes();
     }
 
     public void mostrarAnclaje(Bicicleta bici, int numeroAnclaje) {

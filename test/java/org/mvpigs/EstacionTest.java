@@ -63,7 +63,7 @@ public class EstacionTest {
 
     @Test
     public void testLeerTarjetaUsuarioInactiva() {
-        TarjetaUsuario perico = new TarjetaUsuario(123456789);
+        TarjetaUsuario perico = new TarjetaUsuario("123456789");
         Estacion olivar = new Estacion(2, "Plaza Olivar", 8);
         assertEquals(false, olivar.leerTarjetaUsuario(perico));
     }
@@ -71,7 +71,7 @@ public class EstacionTest {
 
     @Test
     public void testLeerTarjetaUsuarioActiva(){
-        TarjetaUsuario perico = new TarjetaUsuario(123456789, true);
+        TarjetaUsuario perico = new TarjetaUsuario("123456789, true");
         Estacion olivar = new Estacion(2, "Plaza Olivar", 8);
         assertEquals(true, olivar.leerTarjetaUsuario(perico));
     }
@@ -79,7 +79,7 @@ public class EstacionTest {
     @Test
     public void testRetirarBicicletaTarjetaInactiva() {
         Estacion olivar = new Estacion(2, "Plaza Olivar", 8);
-        TarjetaUsuario tarjetaUsuario = new TarjetaUsuario(123456789);
+        TarjetaUsuario tarjetaUsuario = new TarjetaUsuario("123456789");
         olivar.retirarBicicleta(tarjetaUsuario);
         
     }
@@ -87,7 +87,7 @@ public class EstacionTest {
     @Test
     public void testRetirarBicicleta() {
         Estacion olivar = new Estacion(2, "Plaza Olivar", 8);
-        TarjetaUsuario tarjetaUsuario = new TarjetaUsuario(123456789, true);
+        TarjetaUsuario tarjetaUsuario = new TarjetaUsuario("123456789", true);
         
         // Debemos anclar bicicletas para poder retirarlas antes
         Bicicleta bici = new Bicicleta(291);
