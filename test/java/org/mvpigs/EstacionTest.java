@@ -77,11 +77,23 @@ public class EstacionTest {
     }
 
     @Test
-    public void testRetirarBicicletaTarjetaInactiva(){
+    public void testRetirarBicicletaTarjetaInactiva() {
         Estacion olivar = new Estacion(2, "Plaza Olivar", 8);
         TarjetaUsuario tarjetaUsuario = new TarjetaUsuario(123456789);
         olivar.retirarBicicleta(tarjetaUsuario);
         
+    }
+
+    @Test
+    public void testRetirarBicicleta() {
+        Estacion olivar = new Estacion(2, "Plaza Olivar", 8);
+        TarjetaUsuario tarjetaUsuario = new TarjetaUsuario(123456789, true);
+        
+        // Debemos anclar bicicletas para poder retirarlas antes
+        Bicicleta bici = new Bicicleta(291);
+
+        olivar.anclarBicicleta(bici);
+        olivar.retirarBicicleta(tarjetaUsuario);
     }
 
 }

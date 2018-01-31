@@ -1,7 +1,7 @@
 package org.mvpigs.biciPalma;
 
 import java.util.Arrays;
-import org.hamcrest.core.IsNull;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Estacion {
     private int id = 0;
@@ -93,8 +93,23 @@ public class Estacion {
     public void retirarBicicleta(TarjetaUsuario tarjetaUsuario) {
         if ( leerTarjetaUsuario(tarjetaUsuario) ) {
             
+            int posicion = generarAnclaje();
+            boolean biciRetirada = false;
+
+            while (!biciRetirada) {
+                if ( this.anclajes[posicion] != null ){
+                    mostrarBicicleta(this.anclajes[posicion], (posicion+1));
+                    this.anclajes[posicion] = null;
+                    biciRetirada = true;
+                }
+            }
+            
         } else {
             System.out.println("La tarjeta del usuario no está activa");
         }
+    }
+
+    public int generarAnclaje(){
+        return ThreadLocalRandom.current().nextInt(0, this.anclajes.length);
     }
 }
