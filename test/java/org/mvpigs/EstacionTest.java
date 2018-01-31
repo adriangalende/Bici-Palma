@@ -1,5 +1,6 @@
 package org.mvpigs;
 
+import org.mvpigs.biciPalma.Bicicleta;
 import org.mvpigs.biciPalma.Estacion;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -43,6 +44,13 @@ public class EstacionTest{
         System.out.println("**** CASO TEST VISUALIZAR ANCLAJES ****");
         Estacion manacor = new Estacion(1, "Manacor", 6); 
         manacor.consultarAnclajes();     
+    }
+
+    @Test
+    public void testAnclarBicicleta(){
+        Estacion manacor = new Estacion(1, "Manacor", 6); 
+        Bicicleta bici = new Bicicleta(291);
+        manacor.anclarBicicleta(bici);
     }
 
 }

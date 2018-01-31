@@ -1,5 +1,8 @@
 package org.mvpigs.biciPalma;
 
+import java.util.Arrays;
+import org.hamcrest.core.IsNull;
+
 public class Estacion{
     private int id = 0;
     private String direccion = null;
@@ -62,6 +65,18 @@ public class Estacion{
                 System.out.println("Anclaje " + (i+1) + " libre");
             }
         }
+    }
+
+    public void anclarBicicleta(Bicicleta bici){
+        int i = 0;
+        while ( i < anclajes.length ) {
+            if( anclajes[i] == null ) {
+                anclajes[i] = bici;
+                break;
+            }
+            i++;
+        }
+        consultarAnclajes();
     }
 
 }
