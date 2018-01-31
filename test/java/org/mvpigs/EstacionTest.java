@@ -3,6 +3,7 @@ package org.mvpigs;
 import org.mvpigs.biciPalma.Estacion;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class EstacionTest{
     @Test
@@ -35,6 +36,13 @@ public class EstacionTest{
         Estacion palma = new Estacion(1, "Plaza España", 8);
         System.out.println("anclajesLibres: " + palma.anclajesLibres());
         assertEquals(8, palma.anclajesLibres());
+    }
+
+    @Test
+    public void testConsultarAnclajes(){
+        System.out.println("**** CASO TEST VISUALIZAR ANCLAJES ****");
+        Estacion manacor = new Estacion(1, "Manacor", 6); 
+        manacor.consultarAnclajes();     
     }
 
 }

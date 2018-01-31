@@ -53,5 +53,15 @@ public class Estacion{
         return anclajesLibres;
     }
 
+    public void consultarAnclajes(){
+        for (int i = 0; i < anclajes.length; i++) {
+            if ( anclajes[i] != null ){
+                //Obtenemos la id de la bicicleta creada
+                System.out.println("Anclaje " + (i+1) + " " + anclajes[i].getId());
+            } else {
+                System.out.println("Anclaje " + (i+1) + " libre");
+            }
+        }
+    }
 
 }
