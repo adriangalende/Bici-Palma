@@ -79,4 +79,8 @@ public class Estacion{
         consultarAnclajes();
     }
 
+    public void mostrarAnclaje(Bicicleta bici, int numeroAnclaje){
+                System.out.println("bicicleta: " + bici.getId() + " anclada en el anclaje: " + numeroAnclaje);
+    }
+
 }

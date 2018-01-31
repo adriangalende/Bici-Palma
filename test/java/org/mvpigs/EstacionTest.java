@@ -53,4 +53,12 @@ public class EstacionTest{
         manacor.anclarBicicleta(bici);
     }
 
+    @Test
+    public void testMostrarAnclaje(){
+        System.out.println("**** CASO TEST VISUALIZAR ANCLAJES ****");   
+        Estacion olivar = new Estacion(2, "Plaza Olivar", 8);
+        Bicicleta bicicleta = new Bicicleta(291);
+        olivar.mostrarAnclaje(bicicleta, 1);
+    }
+
 }
