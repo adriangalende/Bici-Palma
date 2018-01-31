@@ -3,38 +3,37 @@ package org.mvpigs.biciPalma;
 import java.util.Arrays;
 import org.hamcrest.core.IsNull;
 
-public class Estacion{
+public class Estacion {
     private int id = 0;
     private String direccion = null;
     private int numeroAnclajes = 0;
     private Bicicleta[] anclajes = null;
 
-    public Estacion(){
+    public Estacion() {
 
     }
 
-    public Estacion(int id, String direccion, int numeroAnclajes){
+    public Estacion(int id, String direccion, int numeroAnclajes) {
         this.id = id;
         this.direccion = direccion;
         this.numeroAnclajes = numeroAnclajes;
         this.anclajes = new Bicicleta[numeroAnclajes];
     }
 
-
     /* Getters & Setters */
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public String getDireccion(){
+    public String getDireccion() {
         return direccion;
     }
 
-    public int getNumeroAnclajes(){
+    public int getNumeroAnclajes() {
         return numeroAnclajes;
     }
 
-    public Bicicleta[] getAnclajes(){
+    public Bicicleta[] getAnclajes() {
         return anclajes;
     }
 
@@ -46,31 +45,31 @@ public class Estacion{
         System.out.println("numeroAnclajes: " + getNumeroAnclajes());
     }
 
-    public int anclajesLibres(){
+    public int anclajesLibres() {
         int anclajesLibres = 0;
-        for (Bicicleta anclaje : anclajes){
-            if (anclaje == null){
+        for (Bicicleta anclaje : anclajes) {
+            if (anclaje == null) {
                 anclajesLibres++;
             }
         }
         return anclajesLibres;
     }
 
-    public void consultarAnclajes(){
+    public void consultarAnclajes() {
         for (int i = 0; i < anclajes.length; i++) {
-            if ( anclajes[i] != null ){
+            if (anclajes[i] != null) {
                 //Obtenemos la id de la bicicleta creada
-                System.out.println("Anclaje " + (i+1) + " " + anclajes[i].getId());
+                System.out.println("Anclaje " + (i + 1) + " " + anclajes[i].getId());
             } else {
-                System.out.println("Anclaje " + (i+1) + " libre");
+                System.out.println("Anclaje " + (i + 1) + " libre");
             }
         }
     }
 
-    public void anclarBicicleta(Bicicleta bici){
+    public void anclarBicicleta(Bicicleta bici) {
         int i = 0;
-        while ( i < anclajes.length ) {
-            if( anclajes[i] == null ) {
+        while (i < anclajes.length) {
+            if (anclajes[i] == null) {
                 anclajes[i] = bici;
                 break;
             }
@@ -79,12 +78,23 @@ public class Estacion{
         consultarAnclajes();
     }
 
-    public void mostrarAnclaje(Bicicleta bici, int numeroAnclaje){
-                System.out.println("bicicleta: " + bici.getId() + " anclada en el anclaje: " + numeroAnclaje);
+    public void mostrarAnclaje(Bicicleta bici, int numeroAnclaje) {
+        System.out.println("bicicleta: " + bici.getId() + " anclada en el anclaje: " + numeroAnclaje);
     }
 
-    public boolean leerTarjetaUsuario(TarjetaUsuario tarjetaUsuario){
+    public void mostrarBicicleta(Bicicleta bici, int numeroAnclaje){
+		System.out.println("bicicleta retirada: " + bici.getId() + " del anclaje: " + numeroAnclaje);
+	}
+
+    public boolean leerTarjetaUsuario(TarjetaUsuario tarjetaUsuario) {
         return tarjetaUsuario.estaActivada();
     }
 
+    public void retirarBicicleta(TarjetaUsuario tarjetaUsuario) {
+        if ( leerTarjetaUsuario(tarjetaUsuario) ) {
+            
+        } else {
+            System.out.println("La tarjeta del usuario no está activa");
+        }
+    }
 }

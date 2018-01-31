@@ -76,4 +76,12 @@ public class EstacionTest {
         assertEquals(true, olivar.leerTarjetaUsuario(perico));
     }
 
+    @Test
+    public void testRetirarBicicletaTarjetaInactiva(){
+        Estacion olivar = new Estacion(2, "Plaza Olivar", 8);
+        TarjetaUsuario tarjetaUsuario = new TarjetaUsuario(123456789);
+        olivar.retirarBicicleta(tarjetaUsuario);
+        
+    }
+
 }
