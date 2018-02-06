@@ -59,7 +59,7 @@ public class Estacion {
         for (int i = 0; i < anclajes.length; i++) {
             if (anclajes[i] != null) {
                 //Obtenemos la id de la bicicleta creada
-                System.out.println("Anclaje " + (i + 1) + " " + anclajes[i].getId());
+                System.out.println("Anclaje " + (i + 1) + " " + anclajes[i].toString());
             } else {
                 System.out.println("Anclaje " + (i + 1) + " libre");
             }
@@ -79,11 +79,11 @@ public class Estacion {
     }
 
     public void mostrarAnclaje(Bicicleta bici, int numeroAnclaje) {
-        System.out.println("bicicleta: " + bici.getId() + " anclada en el anclaje: " + numeroAnclaje);
+        System.out.println("bicicleta: " + bici.toString() + " anclada en el anclaje: " + numeroAnclaje);
     }
 
     public void mostrarBicicleta(Bicicleta bici, int numeroAnclaje) {
-        System.out.println("bicicleta retirada: " + bici.getId() + " del anclaje: " + numeroAnclaje);
+        System.out.println("bicicleta retirada: " + bici.toString() + " del anclaje: " + numeroAnclaje);
     }
 
     public boolean leerTarjetaUsuario(TarjetaUsuario tarjetaUsuario) {

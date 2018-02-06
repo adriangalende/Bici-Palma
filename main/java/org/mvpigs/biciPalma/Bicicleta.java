@@ -14,6 +14,10 @@ public class Bicicleta{
     public int getId(){
         return id;
     }
+
+    public String toString() {
+        return Integer.toString(this.getId());
+    }
     
     
 }
