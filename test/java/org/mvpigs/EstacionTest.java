@@ -1,5 +1,6 @@
 package org.mvpigs;
 
+import org.junit.Before;
 import org.mvpigs.biciPalma.Bicicleta;
 import org.mvpigs.biciPalma.Estacion;
 import org.junit.Test;
@@ -7,20 +8,35 @@ import static org.junit.Assert.assertEquals;
 import org.mvpigs.biciPalma.TarjetaUsuario;
 
 public class EstacionTest {
+    
+    /*private Estacion est;
+    
+    @Before
+    public void crearEstaciones(){
+        est = new Estacion(5, "Palma", 3);
+    }
+
+    @Test
+    public void testComprobarEstacionJuanMi() {
+        assertEquals(5, est.getId());
+        assertEquals("Palma", est.getDireccion());
+        assertEquals(3, est.getAnclajes().size());
+    }
+*/
+
     @Test
     public void testComprobarEstacion() {
         Estacion estacion = new Estacion();
         assertEquals(0, estacion.getId());
         assertEquals(null, estacion.getDireccion());
         assertEquals(0, estacion.getNumeroAnclajes());
-        assertEquals(null, estacion.getAnclajes());
     }
 
     @Test
     public void testComprobarEstacionConDatos() {
         Estacion palma = new Estacion(1, "Plaza España", 8);
         System.out.println("[ " + palma.getId() + " ] " + palma.getDireccion() + " " + palma.getNumeroAnclajes());
-        assertEquals(8, palma.getAnclajes().length);
+        assertEquals(8, palma.getAnclajes().size());
     }
 
     @Test
@@ -50,7 +66,9 @@ public class EstacionTest {
     public void testAnclarBicicleta() {
         Estacion manacor = new Estacion(1, "Manacor", 6);
         Bicicleta bici = new Bicicleta(291);
+        Bicicleta bici2 = new Bicicleta(292);
         manacor.anclarBicicleta(bici);
+        manacor.anclarBicicleta(bici2);
     }
 
     @Test
@@ -70,7 +88,7 @@ public class EstacionTest {
 
     @Test
     public void testLeerTarjetaUsuarioActiva() {
-        TarjetaUsuario perico = new TarjetaUsuario("123456789, true");
+        TarjetaUsuario perico = new TarjetaUsuario("123456789", true);
         Estacion olivar = new Estacion(2, "Plaza Olivar", 8);
         assertEquals(true, olivar.leerTarjetaUsuario(perico));
     }

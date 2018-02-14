@@ -1,14 +1,16 @@
 package org.mvpigs.biciPalma;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Estacion {
     private int id = 0;
     private String direccion = null;
     private int numeroAnclajes = 0;
-    private Bicicleta[] anclajes = null;
-
+    //private Bicicleta[] anclajes = null;
+    private Map<Integer, Bicicleta> anclajes = new TreeMap<>();
     public Estacion() {
 
     }
@@ -17,7 +19,8 @@ public class Estacion {
         this.id = id;
         this.direccion = direccion;
         this.numeroAnclajes = numeroAnclajes;
-        this.anclajes = new Bicicleta[numeroAnclajes];
+        setAnclajes(numeroAnclajes);
+        //this.anclajes = new Bicicleta[numeroAnclajes];
     }
 
     /* Getters & Setters */
@@ -33,8 +36,15 @@ public class Estacion {
         return numeroAnclajes;
     }
 
-    public Bicicleta[] getAnclajes() {
+    public Map<Integer, Bicicleta> getAnclajes() {
         return anclajes;
+    }
+
+    public void setAnclajes(int numeroAnclajes) {
+        for(int i = 0 ; i < numeroAnclajes ; i++) {
+            anclajes.put(i, null);
+
+        }
     }
 
     /* Métodos públicos */
@@ -47,8 +57,8 @@ public class Estacion {
 
     public int anclajesLibres() {
         int anclajesLibres = 0;
-        for (Bicicleta anclaje : anclajes) {
-            if (anclaje == null) {
+        for (Map.Entry<Integer, Bicicleta> anclaje : getAnclajes().entrySet()) {
+            if (anclaje.getValue() == null) {
                 anclajesLibres++;
             }
         }
@@ -56,10 +66,10 @@ public class Estacion {
     }
 
     public void consultarAnclajes() {
-        for (int i = 0; i < anclajes.length; i++) {
-            if (anclajes[i] != null) {
+        for (int i = 0; i < getAnclajes().size(); i++) {
+            if ( anclajes.get(i) != null) {
                 //Obtenemos la id de la bicicleta creada
-                System.out.println("Anclaje " + (i + 1) + " " + anclajes[i].toString());
+                System.out.println("Anclaje " + (i + 1) + " " + anclajes.get(i).toString());
             } else {
                 System.out.println("Anclaje " + (i + 1) + " libre");
             }
@@ -68,14 +78,14 @@ public class Estacion {
 
     public void anclarBicicleta(Bicicleta bici) {
         int i = 0;
-        while (i < anclajes.length) {
-            if (anclajes[i] == null) {
-                anclajes[i] = bici;
+        while (i < getAnclajes().size()) {
+            if (anclajes.get(i) == null) {
+                anclajes.put(i, bici);
                 break;
             }
             i++;
         }
-        //consultarAnclajes();
+        consultarAnclajes();
     }
 
     public void mostrarAnclaje(Bicicleta bici, int numeroAnclaje) {
@@ -97,9 +107,9 @@ public class Estacion {
             boolean biciRetirada = false;
 
             while (!biciRetirada) {
-                if (this.anclajes[posicion] != null) {
-                    mostrarBicicleta(this.anclajes[posicion], (posicion + 1));
-                    this.anclajes[posicion] = null;
+                if (anclajes.get(posicion) != null) {
+                    mostrarBicicleta(anclajes.get(posicion), (posicion + 1));
+                    anclajes.put(posicion, null);
                     biciRetirada = true;
                 }
             }
@@ -110,6 +120,6 @@ public class Estacion {
     }
 
     public int generarAnclaje() {
-        return ThreadLocalRandom.current().nextInt(0, this.anclajes.length);
+        return ThreadLocalRandom.current().nextInt(0, getAnclajes().size());
     }
 }
