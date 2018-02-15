@@ -1,13 +1,18 @@
 package org.mvpigs.biciPalma;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.TreeSet;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Estacion {
+public class Estacion{
     private int id = 0;
     private String direccion = null;
     private int numeroAnclajes = 0;
-    private Bicicleta[] anclajes = null;
+    //private Bicicleta[] anclajes = null;
+    HashSet<Bicicleta> anclajes = new HashSet();
 
     public Estacion() {
 
@@ -17,7 +22,8 @@ public class Estacion {
         this.id = id;
         this.direccion = direccion;
         this.numeroAnclajes = numeroAnclajes;
-        this.anclajes = new Bicicleta[numeroAnclajes];
+       // this.anclajes = new Bicicleta[numeroAnclajes];
+
     }
 
     /* Getters & Setters */
@@ -33,7 +39,7 @@ public class Estacion {
         return numeroAnclajes;
     }
 
-    public Bicicleta[] getAnclajes() {
+    public HashSet<Bicicleta> getAnclajes() {
         return anclajes;
     }
 
@@ -47,35 +53,30 @@ public class Estacion {
 
     public int anclajesLibres() {
         int anclajesLibres = 0;
+        Iterator anclajeActual = anclajes.iterator();
+        while(anclajeActual.hasNext()) { 
+            System.out.println(anclajeActual);
+            if (anclajeActual == null) {
+                anclajesLibres++;
+            }
+        }
+
+        /*
         for (Bicicleta anclaje : anclajes) {
             if (anclaje == null) {
                 anclajesLibres++;
             }
-        }
+        }*/
         return anclajesLibres;
     }
 
     public void consultarAnclajes() {
-        for (int i = 0; i < anclajes.length; i++) {
-            if (anclajes[i] != null) {
-                //Obtenemos la id de la bicicleta creada
-                System.out.println("Anclaje " + (i + 1) + " " + anclajes[i].toString());
-            } else {
-                System.out.println("Anclaje " + (i + 1) + " libre");
-            }
-        }
+        System.out.println(getAnclajes());
     }
 
     public void anclarBicicleta(Bicicleta bici) {
-        int i = 0;
-        while (i < anclajes.length) {
-            if (anclajes[i] == null) {
-                anclajes[i] = bici;
-                break;
-            }
-            i++;
-        }
-        //consultarAnclajes();
+        anclajes.add(bici);
+        consultarAnclajes();
     }
 
     public void mostrarAnclaje(Bicicleta bici, int numeroAnclaje) {
@@ -92,24 +93,21 @@ public class Estacion {
 
     public void retirarBicicleta(TarjetaUsuario tarjetaUsuario) {
         if (leerTarjetaUsuario(tarjetaUsuario)) {
-
-            int posicion = generarAnclaje();
-            boolean biciRetirada = false;
-
-            while (!biciRetirada) {
-                if (this.anclajes[posicion] != null) {
-                    mostrarBicicleta(this.anclajes[posicion], (posicion + 1));
-                    this.anclajes[posicion] = null;
-                    biciRetirada = true;
-                }
+            Iterator anclajeActual = anclajes.iterator();
+            while (anclajeActual.hasNext()) {
+                anclajes.remove(anclajeActual.next());
+                break;
             }
 
         } else {
             System.out.println("La tarjeta del usuario no está activa");
         }
     }
-
+    //no necesario para el set
+    /*
     public int generarAnclaje() {
-        return ThreadLocalRandom.current().nextInt(0, this.anclajes.length);
+        return ThreadLocalRandom.current().nextInt(0, getAnclajes().size());
     }
+    */
+
 }

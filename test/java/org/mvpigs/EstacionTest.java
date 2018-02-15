@@ -20,7 +20,7 @@ public class EstacionTest {
     public void testComprobarEstacionConDatos() {
         Estacion palma = new Estacion(1, "Plaza España", 8);
         System.out.println("[ " + palma.getId() + " ] " + palma.getDireccion() + " " + palma.getNumeroAnclajes());
-        assertEquals(8, palma.getAnclajes().length);
+        assertEquals(8, palma.getAnclajes().size());
     }
 
     @Test
@@ -49,8 +49,12 @@ public class EstacionTest {
     @Test
     public void testAnclarBicicleta() {
         Estacion manacor = new Estacion(1, "Manacor", 6);
-        Bicicleta bici = new Bicicleta(291);
-        manacor.anclarBicicleta(bici);
+        Bicicleta bici291 = new Bicicleta(291);
+        Bicicleta bici292 = new Bicicleta(292);
+        Bicicleta bici293 = new Bicicleta(293);
+        manacor.anclarBicicleta(bici291);
+        manacor.anclarBicicleta(bici292);
+        manacor.anclarBicicleta(bici293);
     }
 
     @Test
@@ -70,7 +74,7 @@ public class EstacionTest {
 
     @Test
     public void testLeerTarjetaUsuarioActiva() {
-        TarjetaUsuario perico = new TarjetaUsuario("123456789, true");
+        TarjetaUsuario perico = new TarjetaUsuario("123456789", true);
         Estacion olivar = new Estacion(2, "Plaza Olivar", 8);
         assertEquals(true, olivar.leerTarjetaUsuario(perico));
     }
@@ -89,10 +93,19 @@ public class EstacionTest {
         TarjetaUsuario tarjetaUsuario = new TarjetaUsuario("123456789", true);
 
         // Debemos anclar bicicletas para poder retirarlas antes
-        Bicicleta bici = new Bicicleta(291);
 
-        olivar.anclarBicicleta(bici);
+        Bicicleta bici291 = new Bicicleta(291);
+        Bicicleta bici292 = new Bicicleta(292);
+        Bicicleta bici293 = new Bicicleta(293);
+        Bicicleta bici294 = new Bicicleta(294);
+
+        olivar.anclarBicicleta(bici291);
+        olivar.anclarBicicleta(bici292);
+        olivar.anclarBicicleta(bici293);
+        olivar.anclarBicicleta(bici294);
+
         olivar.retirarBicicleta(tarjetaUsuario);
+        olivar.consultarAnclajes();
     }
 
 }
